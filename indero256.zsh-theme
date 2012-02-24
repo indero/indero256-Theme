@@ -1,4 +1,15 @@
 #based on the yux256colors theme from luxflux
+#
+#Define a Special Host in your .zshrc as ZSH_THEME_SPECIAL_HOST="your.specialhost.com"
+
+if [ -z "$ZSH_THEME_SPECIAL_HOST" ]; then 
+  if [ -z "$SSH_TTY" ]; then
+    ZSH_THEME_SPECIAL_HOST=$(hostname)
+  else
+    ZSH_THEME_SPECIAL_HOST=justantherstring
+  fi
+fi
+
 # define all the 256 colors
 if [ "$TERM" != "linux" ]; then
   SPACER_COLOR=$FG[249]
@@ -13,7 +24,7 @@ if [ "$TERM" != "linux" ]; then
         USER_COLOR=$FX[bold]$FG[075]
         HOSTNAME_COLOR=$FG[178]
       else
-        USER_COLOR=$FG[192]
+        USER_COLOR=$FG[118]
       fi
     fi
   PR_RESET="%{$reset_color%}"
