@@ -54,10 +54,12 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$FG[002]%}]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$FG[001]%}✘%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$FG[002]%}✔%{$reset_color%}"
 function svn_prompt_info {
+if [ $(dpkg-query -W suversion &> /dev/null; echo $?) = 0 ]; then
   if [ $(in_svn) ]; then
     echo "$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_SVN_PROMPT_PREFIX\
       $ZSH_THEME_REPO_NAME_COLOR$(svn_get_repo_name)$ZSH_PROMPT_BASE_COLOR$ZSH_THEME_SVN_PROMPT_REVISION$(svn_get_rev_nr)$ZSH_THEME_SVN_PROMPT_SUFFIX$ZSH_PROMPT_BASE_COLOR$(svn_dirty)$ZSH_PROMPT_BASE_COLOR"
       fi
+ fi
 }
 # svn color config
 ZSH_THEME_SVN_PROMPT_PREFIX="%{$reset_color%}%{$FG[002]%}(svn)-[%{$reset_color%}"
